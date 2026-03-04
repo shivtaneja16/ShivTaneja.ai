@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shiv Taneja — AI developer Portfolio</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-brand">Shiv<span class="dot"> Taneja</span></div>
+    <ul class="nav-links">
+      <li><a href="#home"    class="nav-link active">Home</a></li>
+      <li><a href="#about"  class="nav-link">About</a></li>
+      <li><a href="#works"  class="nav-link">Portfolio</a></li>
+      <li><a href="#contact" class="nav-link">Contact</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#home"    class="mobile-link">Home</a>
+    <a href="#about"  class="mobile-link">About</a>
+    <a href="#works"  class="mobile-link">Portfolio</a>
+    <a href="#contact" class="mobile-link">Contact</a>
+  </div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1 class="hero-name">
+        <span class="name-dark">MACHINE LEARNING</span>
+        <span class="name-blue">ENGINEER</span>
+      </h1>
+      <div class="hero-badges">
+        <span class="badge badge-filled">AI Specialist</span>
+        <span class="badge badge-outline">Data Scientist</span>
+      </div>
+      <p class="hero-desc">
+        Hi, I'm <strong>Shiv Taneja</strong> — passionate about building intelligent,
+        data-driven applications that solve real-world problems.
+      </p>
+      <div class="hero-cta">
+        <a href="#works"   class="btn btn-primary">View My Work</a>
+        <a href="#contact" class="btn btn-outline">Hire Me</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">3+</span>
+          <span class="stat-label">Years Coding</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">20+</span>
+          <span class="stat-label">Projects</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat">
+          <span class="stat-num">5+</span>
+          <span class="stat-label">Tech Stacks</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-illustration">
+      <!-- Hero SVG — person at desk with floating tech icons -->
+      <svg viewBox="0 0 500 440" fill="none" xmlns="http://www.w3.org/2000/svg" class="hero-svg">
+        <!-- Subtle background circle -->
+        <circle cx="310" cy="230" r="190" fill="#eff6ff" opacity="0.7"/>
+
+        <!-- Desk surface -->
+        <rect x="100" y="310" width="300" height="14" rx="7" fill="#bfdbfe"/>
+        <rect x="118" y="324" width="18" height="70" rx="6" fill="#93c5fd"/>
+        <rect x="364" y="324" width="18" height="70" rx="6" fill="#93c5fd"/>
+
+        <!-- Monitor body -->
+        <rect x="155" y="185" width="210" height="134" rx="12" fill="#dbeafe"/>
+        <rect x="163" y="193" width="194" height="118" rx="8" fill="#eff6ff"/>
+        <!-- Monitor screen – bar chart visual -->
+        <rect x="175" y="270" width="18" height="30" rx="3" fill="#2563eb" opacity="0.7"/>
+        <rect x="198" y="255" width="18" height="45" rx="3" fill="#2563eb"/>
+        <rect x="221" y="262" width="18" height="38" rx="3" fill="#60a5fa"/>
+        <rect x="244" y="248" width="18" height="52" rx="3" fill="#2563eb" opacity="0.8"/>
+        <rect x="267" y="258" width="18" height="42" rx="3" fill="#60a5fa" opacity="0.8"/>
+        <rect x="290" y="242" width="18" height="58" rx="3" fill="#2563eb"/>
+        <!-- X axis line -->
+        <line x1="172" y1="302" x2="315" y2="302" stroke="#93c5fd" stroke-width="2"/>
+        <!-- Trend line -->
+        <polyline points="184,285 207,270 230,276 253,262 276,268 299,252" stroke="#f59e0b" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <!-- Monitor stand -->
+        <rect x="244" y="319" width="22" height="18" rx="4" fill="#bfdbfe"/>
+        <rect x="228" y="334" width="54" height="8" rx="4" fill="#bfdbfe"/>
+
+        <!-- Person body — blue shirt -->
+        <rect x="342" y="238" width="46" height="62" rx="23" fill="#2563eb"/>
+        <!-- Head -->
+        <circle cx="365" cy="212" r="30" fill="#fcd9b6"/>
+        <!-- Hair -->
+        <path d="M335 206 Q345 178 365 182 Q385 178 395 206 Q392 185 365 183 Q338 185 335 206Z" fill="#1e1206"/>
+        <!-- Eyes -->
+        <circle cx="356" cy="208" r="4.5" fill="#1a0a00"/>
+        <circle cx="374" cy="208" r="4.5" fill="#1a0a00"/>
+        <circle cx="357" cy="207" r="1.8" fill="white"/>
+        <circle cx="375" cy="207" r="1.8" fill="white"/>
+        <!-- Smile -->
+        <path d="M357 220 Q365 228 373 220" stroke="#d08050" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+        <!-- Arms -->
+        <path d="M342 255 Q318 272 308 295" stroke="#2563eb" stroke-width="18" stroke-linecap="round" fill="none"/>
+        <path d="M388 255 Q412 272 422 290" stroke="#2563eb" stroke-width="18" stroke-linecap="round" fill="none"/>
+        <!-- Hands -->
+        <circle cx="306" cy="299" r="12" fill="#fcd9b6"/>
+        <circle cx="424" cy="294" r="12" fill="#fcd9b6"/>
+
+        <!-- Chair back -->
+        <rect x="332" y="270" width="66" height="80" rx="12" fill="#dbeafe" opacity="0.5"/>
+
+        <!-- Floating tech icons -->
+        <g class="float-1">
+          <rect x="50"  y="120" width="56" height="56" rx="14" fill="#dbeafe" stroke="#93c5fd" stroke-width="1.5"/>
+          <text x="78" y="155" text-anchor="middle" font-size="26" fill="#2563eb">🧠</text>
+        </g>
+        <g class="float-2">
+          <rect x="420" y="100" width="56" height="56" rx="14" fill="#dbeafe" stroke="#93c5fd" stroke-width="1.5"/>
+          <text x="448" y="135" text-anchor="middle" font-size="26" fill="#2563eb">📊</text>
+        </g>
+        <g class="float-3">
+          <rect x="440" y="195" width="48" height="48" rx="12" fill="#fef3c7" stroke="#fcd34d" stroke-width="1.5"/>
+          <text x="464" y="226" text-anchor="middle" font-size="22" fill="#d97706">⚙️</text>
+        </g>
+        <g class="float-4">
+          <rect x="44"  y="215" width="48" height="48" rx="12" fill="#dcfce7" stroke="#86efac" stroke-width="1.5"/>
+          <text x="68" y="246" text-anchor="middle" font-size="22" fill="#16a34a">Py</text>
+        </g>
+        <g class="float-5">
+          <rect x="130" y="100" width="48" height="48" rx="12" fill="#fce7f3" stroke="#f9a8d4" stroke-width="1.5"/>
+          <text x="154" y="131" text-anchor="middle" font-size="20" fill="#db2777">&lt;/&gt;</text>
+        </g>
+
+        <!-- Decorative dots -->
+        <circle cx="470" cy="340" r="6"  fill="#bfdbfe"/>
+        <circle cx="486" cy="355" r="4"  fill="#93c5fd"/>
+        <circle cx="460" cy="358" r="3"  fill="#dbeafe"/>
+        <circle cx="70"  cy="310" r="6"  fill="#bfdbfe"/>
+        <circle cx="55"  cy="325" r="4"  fill="#93c5fd"/>
+      </svg>
+    </div>
+
+    <!-- Scroll indicator -->
+    <a href="#about" class="scroll-indicator" aria-label="Scroll down">
+      <div class="scroll-dot"></div>
+    </a>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about" id="about">
+    <div class="container">
+
+      <div class="about-illustration">
+        <div class="about-img-wrapper">
+          <div class="about-photo-frame">
+            <img src="1768332490476.jpg" alt="Shiv Taneja" class="about-photo" />
+          </div>
+        </div>
+      </div>
+
+      <div class="about-content">
+        <h2 class="section-title">About <span class="highlight">me</span></h2>
+        <p class="about-text">
+          I am an AI Systems Developer focused on designing and building production-grade AI systems using Large Language Models (LLMs). My work centers on translating AI research into scalable, real-world applications across both product and service-based environments.
+
+I specialize in developing end-to-end AI systems powered by Retrieval-Augmented Generation (RAG), agentic workflows, and Small Language Model (SLM) fine-tuning. My experience includes building document intelligence pipelines, semantic search systems, and LLM-powered applications that emphasize reliability, contextual accuracy, and practical deployment.
+
+At Tata Consultancy Services, I work on Generative AI proof-of-concepts and reusable AI frameworks, including document ingestion pipelines, vector database management, prompt orchestration, and agent-based workflows using LangChain and LangGraph. I focus on system design, experimentation, evaluation, and delivery—owning the full lifecycle from problem understanding to deployable solutions.        </p>
+        <p class="about-text">
+          From building data pipelines and ML models to crafting RESTful APIs and responsive web interfaces — I enjoy the full spectrum of software development.
+        </p>
+        <div class="skills-grid">
+          <div class="skill-tag"><span class="skill-dot"></span>Python</div>
+          <div class="skill-tag"><span class="skill-dot"></span>Machine Learning</div>
+          <div class="skill-tag"><span class="skill-dot"></span>Java</div>
+          <div class="skill-tag"><span class="skill-dot"></span>Flask / FastAPI</div>
+          <div class="skill-tag"><span class="skill-dot"></span>SQL / MongoDB</div>
+          <div class="skill-tag"><span class="skill-dot"></span>Data Analysis</div>
+          <div class="skill-tag"><span class="skill-dot"></span>React</div>
+          <div class="skill-tag"><span class="skill-dot"></span>Docker</div>
+        </div>
+        <a href="#contact" class="btn btn-primary">Let's Talk</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WORKS ===== -->
+  <section class="works" id="works">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">My recent <span class="highlight">works</span></h2>
+        <p class="section-subtitle">A selection of projects I've built and shipped.</p>
+      </div>
+
+      <div class="filter-tabs">
+        <button class="filter-btn active" data-filter="ml">ML</button>
+        <button class="filter-btn" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="data">Data Science</button>
+        <button class="filter-btn" data-filter="web">Web</button>
+      </div>
+
+      <div class="projects-grid" id="projects-grid">
+
+        <div class="project-card" data-category="ml">
+          <div class="project-img">
+            <svg viewBox="0 0 280 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="280" height="160" rx="10" fill="#eff6ff"/>
+              <!-- Network nodes -->
+              <circle cx="40"  cy="80" r="14" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+              <circle cx="100" cy="40" r="14" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+              <circle cx="100" cy="120" r="14" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+              <circle cx="170" cy="55" r="14" fill="#bfdbfe" stroke="#2563eb" stroke-width="2.5"/>
+              <circle cx="170" cy="105" r="14" fill="#bfdbfe" stroke="#2563eb" stroke-width="2.5"/>
+              <circle cx="240" cy="80" r="18" fill="#2563eb"/>
+              <!-- Connections -->
+              <line x1="54"  y1="80" x2="86"  y2="46"  stroke="#93c5fd" stroke-width="1.5"/>
+              <line x1="54"  y1="80" x2="86"  y2="114" stroke="#93c5fd" stroke-width="1.5"/>
+              <line x1="114" y1="40" x2="156" y2="56"  stroke="#93c5fd" stroke-width="1.5"/>
+              <line x1="114" y1="120" x2="156" y2="104" stroke="#93c5fd" stroke-width="1.5"/>
+              <line x1="114" y1="40"  x2="156" y2="104" stroke="#bfdbfe" stroke-width="1"/>
+              <line x1="114" y1="120" x2="156" y2="56"  stroke="#bfdbfe" stroke-width="1"/>
+              <line x1="184" y1="55"  x2="222" y2="74"  stroke="#60a5fa" stroke-width="2"/>
+              <line x1="184" y1="105" x2="222" y2="86"  stroke="#60a5fa" stroke-width="2"/>
+              <!-- Output label -->
+              <text x="240" y="85" text-anchor="middle" font-size="10" fill="white" font-weight="700">ML</text>
+            </svg>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Industrial Policy Chatbot</h3>
+            <p class="project-desc">An intelligent chatbot that answers questions about Karnataka's New Industrial Policy 2025–2030 using a Hybrid RAG (Retrieval-Augmented Generation) pipeline. It combines sparse keyword search, dense semantic search, and cross-encoder reranking to surface the most relevant policy excerpts</p>
+            <div class="project-links">
+              <a href="https://github.com/shivtaneja16/IndustrialPolicyChatbot.git" class="plink">View Project →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="ml">
+          <div class="project-img">
+            <svg viewBox="0 0 280 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="280" height="160" rx="10" fill="#fef9ee"/>
+              <!-- Robot head simplified -->
+              <rect x="98" y="28" width="84" height="68" rx="12" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/>
+              <rect x="110" y="42" width="20" height="14" rx="5" fill="#d97706"/>
+              <rect x="150" y="42" width="20" height="14" rx="5" fill="#d97706"/>
+              <rect x="112" y="64" width="56" height="8" rx="4" fill="#fbbf24"/>
+              <!-- Antenna -->
+              <line x1="140" y1="28"  x2="140" y2="14"  stroke="#f59e0b" stroke-width="3" stroke-linecap="round"/>
+              <circle cx="140" cy="10" r="5" fill="#f59e0b"/>
+              <!-- Body -->
+              <rect x="106" y="100" width="68" height="44" rx="8" fill="#fde68a" stroke="#f59e0b" stroke-width="1.5"/>
+              <circle cx="125" cy="120" r="6" fill="#f59e0b"/>
+              <circle cx="140" cy="120" r="6" fill="#d97706"/>
+              <circle cx="155" cy="120" r="6" fill="#f59e0b"/>
+              <!-- AI waves -->
+              <path d="M36 80 Q50 65 64 80 Q78 95 92 80" stroke="#fbbf24" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <path d="M188 80 Q202 65 216 80 Q230 95 244 80" stroke="#fbbf24" stroke-width="2" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">AI Chatbot Agent</h3>
+            <p class="project-desc">Conversational AI chatbot with multi-turn dialogue, context management, and knowledge retrieval.</p>
+            <div class="project-links">
+              <a href="#" class="plink">View Project →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="data">
+          <div class="project-img">
+            <svg viewBox="0 0 280 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="280" height="160" rx="10" fill="#f0fdf4"/>
+              <!-- Bar chart -->
+              <rect x="36"  y="105" width="22" height="35" rx="4" fill="#86efac"/>
+              <rect x="66"  y="85"  width="22" height="55" rx="4" fill="#4ade80"/>
+              <rect x="96"  y="68"  width="22" height="72" rx="4" fill="#22c55e"/>
+              <rect x="126" y="50"  width="22" height="90" rx="4" fill="#16a34a"/>
+              <rect x="156" y="75"  width="22" height="65" rx="4" fill="#4ade80"/>
+              <rect x="186" y="55"  width="22" height="85" rx="4" fill="#22c55e"/>
+              <rect x="216" y="38"  width="22" height="102" rx="4" fill="#16a34a"/>
+              <!-- X axis -->
+              <line x1="28" y1="142" x2="252" y2="142" stroke="#86efac" stroke-width="2"/>
+              <!-- Trend line -->
+              <polyline points="47,108 77,88 107,72 137,55 167,78 197,60 227,43" stroke="#f59e0b" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Y axis dots -->
+              <circle cx="47"  cy="108" r="4" fill="#f59e0b"/>
+              <circle cx="77"  cy="88"  r="4" fill="#f59e0b"/>
+              <circle cx="107" cy="72"  r="4" fill="#f59e0b"/>
+              <circle cx="137" cy="55"  r="4" fill="#f59e0b"/>
+              <circle cx="167" cy="78"  r="4" fill="#f59e0b"/>
+              <circle cx="197" cy="60"  r="4" fill="#f59e0b"/>
+              <circle cx="227" cy="43"  r="4" fill="#f59e0b"/>
+            </svg>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Data Visualization Dashboard</h3>
+            <p class="project-desc">Interactive analytics dashboard for exploring large datasets with statistical insights and dynamic charts.</p>
+            <div class="project-links">
+              <a href="#" class="plink">View Project →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="web">
+          <div class="project-img">
+            <svg viewBox="0 0 280 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="280" height="160" rx="10" fill="#eff6ff"/>
+              <!-- Browser window -->
+              <rect x="28" y="20" width="224" height="120" rx="8" fill="white" stroke="#bfdbfe" stroke-width="2"/>
+              <!-- Title bar -->
+              <rect x="28" y="20" width="224" height="28" rx="8" fill="#dbeafe"/>
+              <rect x="28" y="36" width="224" height="12" fill="#dbeafe"/>
+              <circle cx="46" cy="34" r="5" fill="#fca5a5"/>
+              <circle cx="62" cy="34" r="5" fill="#fde68a"/>
+              <circle cx="78" cy="34" r="5" fill="#86efac"/>
+              <!-- URL bar -->
+              <rect x="98" y="27" width="130" height="14" rx="7" fill="white" opacity="0.6"/>
+              <!-- Content -->
+              <rect x="40" y="60" width="90" height="8"  rx="4" fill="#bfdbfe"/>
+              <rect x="40" y="76" width="130" height="6" rx="3" fill="#e0f2fe" opacity="0.8"/>
+              <rect x="40" y="89" width="110" height="6" rx="3" fill="#e0f2fe" opacity="0.8"/>
+              <rect x="40" y="102" width="80" height="6" rx="3" fill="#e0f2fe" opacity="0.8"/>
+              <!-- Button -->
+              <rect x="40" y="115" width="70" height="18" rx="9" fill="#2563eb"/>
+              <rect x="118" y="60" width="120" height="70" rx="8" fill="#eff6ff" stroke="#bfdbfe" stroke-width="1.5"/>
+              <!-- Flask logo simplified -->
+              <path d="M158 68 L178 68 L188 95 Q188 105 168 105 Q148 105 148 95Z" fill="#dbeafe" stroke="#60a5fa" stroke-width="1.5"/>
+              <line x1="168" y1="68" x2="168" y2="58" stroke="#60a5fa" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Resale Price Predictor</h3>
+            <p class="project-desc">A Flask web application that predicts resale prices using a trained regression model with a clean input UI.</p>
+            <div class="project-links">
+              <a href="#" class="plink">View Project →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="ml">
+          <div class="project-img">
+            <svg viewBox="0 0 280 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="280" height="160" rx="10" fill="#f0fdf4"/>
+              <!-- Leaf shape -->
+              <path d="M100 130 Q60 90 80 50 Q110 20 160 40 Q200 60 190 100 Q170 140 100 130Z" fill="#bbf7d0" stroke="#22c55e" stroke-width="2"/>
+              <!-- Leaf veins -->
+              <path d="M100 130 Q130 90 160 40" stroke="#22c55e" stroke-width="1.5" fill="none"/>
+              <path d="M120 110 Q140 85 155 65" stroke="#86efac" stroke-width="1" fill="none"/>
+              <path d="M106 118 Q116 100 128 85" stroke="#86efac" stroke-width="1" fill="none"/>
+              <!-- Disease spot -->
+              <circle cx="130" cy="75" r="14" fill="#fca5a5" opacity="0.7" stroke="#ef4444" stroke-width="1.5"/>
+              <circle cx="148" cy="92" r="10" fill="#fca5a5" opacity="0.7" stroke="#ef4444" stroke-width="1.5"/>
+              <!-- Detection box -->
+              <rect x="112" y="58" width="52" height="52" rx="4" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="5 3"/>
+              <!-- CNN label -->
+              <rect x="190" y="44" width="70" height="22" rx="11" fill="#dcfce7" stroke="#22c55e" stroke-width="1"/>
+              <text x="225" y="59" text-anchor="middle" font-size="10" fill="#15803d" font-weight="700">CNN Model</text>
+              <!-- Accuracy -->
+              <rect x="190" y="74" width="70" height="22" rx="11" fill="#dcfce7" stroke="#22c55e" stroke-width="1"/>
+              <text x="225" y="89" text-anchor="middle" font-size="10" fill="#15803d" font-weight="700">96.4% acc</text>
+            </svg>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Plant Disease Detection</h3>
+            <p class="project-desc">Deep learning model to identify plant diseases from leaf images using CNNs with high accuracy.</p>
+            <div class="project-links">
+              <a href="#" class="plink">View Project →</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="data">
+          <div class="project-img">
+            <svg viewBox="0 0 280 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="280" height="160" rx="10" fill="#f0f9ff"/>
+              <!-- Database cylinders -->
+              <ellipse cx="100" cy="50"  rx="38" ry="12" fill="#bfdbfe" stroke="#2563eb" stroke-width="1.5"/>
+              <rect x="62" y="50" width="76" height="40" fill="#dbeafe" stroke="#2563eb" stroke-width="1.5"/>
+              <ellipse cx="100" cy="90"  rx="38" ry="12" fill="#93c5fd" stroke="#2563eb" stroke-width="1.5"/>
+              <rect x="62" y="90" width="76" height="26" fill="#bfdbfe" stroke="#2563eb" stroke-width="1.5"/>
+              <ellipse cx="100" cy="116" rx="38" ry="12" fill="#60a5fa" stroke="#2563eb" stroke-width="1.5"/>
+              <!-- Connection arrow -->
+              <path d="M145 80 L175 80" stroke="#2563eb" stroke-width="2" stroke-linecap="round"/>
+              <polygon points="175,75 186,80 175,85" fill="#2563eb"/>
+              <!-- Java/JDBC label -->
+              <rect x="188" y="58" width="66" height="44" rx="8" fill="#dbeafe" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="221" y="78"  text-anchor="middle" font-size="11" fill="#1d4ed8" font-weight="700">JDBC</text>
+              <text x="221" y="93" text-anchor="middle" font-size="10" fill="#3b82f6">Java</text>
+            </svg>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Database Management Systems</h3>
+            <p class="project-desc">JDBC-based Java applications and MongoDB integrations for efficient data storage and retrieval.</p>
+            <div class="project-links">
+              <a href="#" class="plink">View Project →</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-content">
+
+        <div class="contact-left">
+          <h2 class="section-title">Got a project <span class="highlight">in mind?</span></h2>
+          <p class="contact-desc">
+            I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+          </p>
+          <div class="contact-info">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" stroke="#2563eb" stroke-width="1.8"/><polyline points="22,6 12,13 2,6" stroke="#2563eb" stroke-width="1.8"/></svg>
+              </div>
+              <span>shivtaneja16@gmail.com</span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" stroke="#2563eb" stroke-width="1.8"/><circle cx="12" cy="10" r="3" stroke="#2563eb" stroke-width="1.8"/></svg>
+              </div>
+              <span>India</span>
+            </div>
+          </div>
+
+          <!-- Contact illustration -->
+          <div class="contact-illustration">
+            <svg viewBox="0 0 280 230" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Background blobs -->
+              <circle cx="90"  cy="160" r="60" fill="#eff6ff" opacity="0.8"/>
+              <circle cx="190" cy="140" r="40" fill="#dbeafe" opacity="0.5"/>
+              <!-- Desk/surface -->
+              <rect x="40" y="185" width="200" height="10" rx="5" fill="#bfdbfe"/>
+              <!-- Laptop -->
+              <rect x="80" y="140" width="120" height="48" rx="7" fill="#1e3a5f"/>
+              <rect x="87" y="147" width="106" height="38" rx="5" fill="#1e40af" opacity="0.9"/>
+              <!-- Screen code lines -->
+              <rect x="95" y="155" width="44" height="3" rx="1.5" fill="#60a5fa" opacity="0.8"/>
+              <rect x="95" y="162" width="68" height="3" rx="1.5" fill="white" opacity="0.3"/>
+              <rect x="103" y="169" width="36" height="3" rx="1.5" fill="#34d399" opacity="0.7"/>
+              <rect x="103" y="176" width="55" height="3" rx="1.5" fill="white" opacity="0.3"/>
+              <!-- Laptop base -->
+              <rect x="72" y="188" width="136" height="8" rx="4" fill="#1e3a5f"/>
+              <!-- Person sitting -->
+              <!-- Body -->
+              <rect x="106" y="110" width="42" height="54" rx="20" fill="#2563eb"/>
+              <!-- Head -->
+              <circle cx="127" cy="92" r="24" fill="#fcd9b6"/>
+              <!-- Hair -->
+              <path d="M103 88 Q110 66 127 69 Q144 66 151 88 Q148 72 127 70 Q106 72 103 88Z" fill="#1e1206"/>
+              <!-- Eyes -->
+              <circle cx="119" cy="88" r="3.5" fill="#1a0a00"/>
+              <circle cx="135" cy="88" r="3.5" fill="#1a0a00"/>
+              <circle cx="120" cy="87" r="1.4" fill="white"/>
+              <circle cx="136" cy="87" r="1.4" fill="white"/>
+              <!-- Smile -->
+              <path d="M119 100 Q127 107 135 100" stroke="#d08050" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <!-- Arms typing -->
+              <path d="M106 125 Q88 142 84 160"  stroke="#2563eb" stroke-width="12" stroke-linecap="round" fill="none"/>
+              <path d="M148 125 Q166 142 170 160" stroke="#2563eb" stroke-width="12" stroke-linecap="round" fill="none"/>
+              <circle cx="82"  cy="163" r="8" fill="#fcd9b6"/>
+              <circle cx="172" cy="163" r="8" fill="#fcd9b6"/>
+              <!-- Stack of books to the left -->
+              <rect x="38" y="165" width="38" height="8"  rx="2" fill="#bfdbfe"/>
+              <rect x="34" y="158" width="38" height="8"  rx="2" fill="#93c5fd"/>
+              <rect x="38" y="151" width="38" height="8"  rx="2" fill="#60a5fa"/>
+              <!-- Decorative dots -->
+              <circle cx="228" cy="110" r="5" fill="#bfdbfe"/>
+              <circle cx="242" cy="124" r="3" fill="#93c5fd"/>
+              <circle cx="220" cy="128" r="4" fill="#dbeafe"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="contact-right">
+          <form class="contact-form" id="contact-form">
+            <div class="form-group">
+              <label for="fname">Your Name</label>
+              <input type="text"  id="fname"   name="name"    placeholder="Shiv Taneja"          required />
+            </div>
+            <div class="form-group">
+              <label for="femail">Email</label>
+              <input type="email" id="femail"  name="email"   placeholder="hello@email.com"       required />
+            </div>
+<div class="form-group">
+              <label for="fmessage">Message</label>
+              <textarea id="fmessage" name="message" rows="5" placeholder="Tell me about your project…" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-full">
+              <span>Send Message</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><line x1="22" y1="2" x2="11" y2="13" stroke="currentColor" stroke-width="2"/><polygon points="22 2 15 22 11 13 2 9 22 2" stroke="currentColor" stroke-width="2" fill="currentColor"/></svg>
+            </button>
+            <div class="form-success" id="form-success">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><polyline points="20 6 9 17 4 12" stroke="#16a34a" stroke-width="2.5"/></svg>
+              Message sent successfully!
+            </div>
+            <div class="form-error" id="form-error">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="#dc2626" stroke-width="2"/><line x1="12" y1="8" x2="12" y2="12" stroke="#dc2626" stroke-width="2"/><circle cx="12" cy="16" r="1" fill="#dc2626"/></svg>
+              Something went wrong. Please try again.
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 &nbsp;|&nbsp; <a href="#">Privacy Policy</a> &nbsp;|&nbsp; <a href="#">Terms</a></p>
+        <div class="footer-social">
+          <a href="#" class="social-btn" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="Twitter">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+          </a>
+          <a href="#" class="social-btn" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
