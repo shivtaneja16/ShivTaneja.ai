@@ -65,7 +65,7 @@ body {
   position: fixed;
   top: 0; left: 0; right: 0;
   width: 100%;
-  z-index: 100;
+  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -152,7 +152,7 @@ body {
   background: var(--bg-secondary);
   border-bottom: 1px solid var(--border);
   padding: 1.25rem 2rem;
-  z-index: 99;
+  z-index: 999;
   flex-direction: column;
   gap: 0;
   box-shadow: var(--shadow);
@@ -1010,6 +1010,7 @@ body {
   align-items: center;
   gap: 0.75rem;
   padding: 1rem 0 2.5rem;
+  isolation: isolate;
 }
 
 .reactor-scene {
