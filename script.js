@@ -1,339 +1,233 @@
-/* =============================================
-   PORTFOLIO — JavaScript (Light Theme)
-   ============================================= */
-const FORMSPREE_ENDPOINT="https://formspree.io/f/mwvnapgv";
 'use strict';
 
-// ===== NAVBAR SCROLL =====
-(function initNavbar() {
-  const navbar  = document.getElementById('navbar');
-  const links   = document.querySelectorAll('.nav-link');
-  const sections = document.querySelectorAll('section[id]');
+// ===== CUSTOM CURSOR =====
+(function initCursor() {
+  const cursor = document.getElementById('cursor');
+  if (!cursor) return;
 
-  function onScroll() {
-    navbar.classList.toggle('scrolled', window.scrollY > 50);
+  let mx = 0, my = 0, cx = 0, cy = 0;
 
-    let current = '';
-    sections.forEach(sec => {
-      if (window.scrollY >= sec.offsetTop - 110) current = sec.id;
-    });
-    links.forEach(l => {
-      l.classList.toggle('active', l.getAttribute('href') === '#' + current);
-    });
-  }
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
 
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-})();
-
-
-// ===== HAMBURGER MENU =====
-(function initHamburger() {
-  const btn   = document.getElementById('hamburger');
-  const menu  = document.getElementById('mobile-menu');
-  const mLinks = menu.querySelectorAll('.mobile-link');
-
-  btn.addEventListener('click', () => menu.classList.toggle('open'));
-  mLinks.forEach(l => l.addEventListener('click', () => menu.classList.remove('open')));
-})();
-
-
-// ===== INTERSECTION OBSERVER (fade-in animations) =====
-(function initObserver() {
-  const map = [
-    { sel: '.hero-content',       cls: 'fade-in-left'  },
-    { sel: '.hero-illustration',  cls: 'fade-in-right' },
-    { sel: '.about-illustration', cls: 'fade-in-left'  },
-    { sel: '.about-content',      cls: 'fade-in-right' },
-    { sel: '.section-header',     cls: 'fade-in'       },
-    { sel: '.contact-left',       cls: 'fade-in-left'  },
-    { sel: '.contact-right',      cls: 'fade-in-right' },
-    { sel: '.footer-bottom',      cls: 'fade-in'       },
-  ];
-
-  map.forEach(({ sel, cls }) => {
-    document.querySelectorAll(sel).forEach((el, i) => {
-      el.classList.add(cls);
-      if (i > 0) el.classList.add('delay-' + Math.min(i, 6));
-    });
-  });
-
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        io.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
-
-  document.querySelectorAll('.fade-in, .fade-in-left, .fade-in-right')
-    .forEach(el => io.observe(el));
-})();
-
-
-// ===== PROJECT FILTER =====
-(function initFilter() {
-  const buttons = document.querySelectorAll('.filter-btn');
-  const cards   = document.querySelectorAll('.project-card');
-
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const filter = btn.dataset.filter;
-      buttons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      cards.forEach((card, i) => {
-        const match = filter === 'all' || card.dataset.category === filter;
-        if (match) {
-          card.classList.remove('hidden');
-          card.style.opacity = '0';
-          card.style.transform = 'translateY(16px)';
-          requestAnimationFrame(() => {
-            setTimeout(() => {
-              card.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
-              card.style.opacity   = '1';
-              card.style.transform = 'translateY(0)';
-            }, i * 40);
-          });
-        } else {
-          card.classList.add('hidden');
-          card.style.opacity   = '';
-          card.style.transform = '';
-          card.style.transition = '';
-        }
-      });
-    });
-  });
-})();
-
-
-// ===== CONTACT FORM =====
-// To activate email delivery:
-//   1. Go to https://formspree.io and sign up (free)
-//   2. Create a new form — set the email to shivtaneja16@gmail.com
-//   3. Replace YOUR_FORM_ID below with the ID from your Formspree dashboard
-
-
-(function initForm() {
-  const form    = document.getElementById('contact-form');
-  const success = document.getElementById('form-success');
-  const error   = document.getElementById('form-error');
-
-  form.addEventListener('submit', async e => {
-    e.preventDefault();
-    const btn  = form.querySelector('button[type="submit"]');
-    const span = btn.querySelector('span');
-
-    btn.disabled     = true;
-    span.textContent = 'Sending…';
-    success.classList.remove('show');
-    error.classList.remove('show');
-
-    try {
-      const res = await fetch(FORMSPREE_ENDPOINT, {
-        method:  'POST',
-        headers: { 'Accept': 'application/json' },
-        body:    new FormData(form)
-      });
-
-      if (res.ok) {
-        form.reset();
-        success.classList.add('show');
-        setTimeout(() => success.classList.remove('show'), 5000);
-      } else {
-        error.classList.add('show');
-        setTimeout(() => error.classList.remove('show'), 5000);
-      }
-    } catch {
-      error.classList.add('show');
-      setTimeout(() => error.classList.remove('show'), 5000);
-    } finally {
-      btn.disabled     = false;
-      span.textContent = 'Send Message';
-    }
-  });
-})();
-
-
-// ===== ARC REACTOR ANIMATION =====
-(function initReactorAnimation() {
-  if (typeof anime === 'undefined') return;
-  const { animate, createTimeline, stagger } = anime;
-
-  const reactorStage = document.getElementById('reactor-stage');
-  const projectsView = document.getElementById('projects-view');
-  const reassembleBtn = document.getElementById('reassemble-btn');
-  if (!reactorStage) return;
-
-  const SVG_NS = 'http://www.w3.org/2000/svg';
-  const CX = 250, CY = 250;
-
-  function svgEl(tag, attrs) {
-    const el = document.createElementNS(SVG_NS, tag);
-    for (const [k, v] of Object.entries(attrs)) el.setAttribute(k, v);
-    return el;
-  }
-
-  function polar(cx, cy, r, deg) {
-    const rad = (deg - 90) * Math.PI / 180;
-    return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
-  }
-
-  // Build tick marks
-  const smallTicks = document.getElementById('tick-marks-small');
-  const largeTicks  = document.getElementById('tick-marks-large');
-  for (let i = 0; i < 60; i++) {
-    const a  = i * 6;
-    const p1 = polar(CX, CY, 224, a);
-    const p2 = polar(CX, CY, (i % 5 === 0) ? 234 : 230, a);
-    const g  = (i % 5 === 0) ? largeTicks : smallTicks;
-    g.appendChild(svgEl('line', {
-      x1: p1.x, y1: p1.y, x2: p2.x, y2: p2.y,
-      stroke: (i % 5 === 0) ? 'rgba(0,229,255,0.6)' : 'rgba(79,195,247,0.25)',
-      'stroke-width': (i % 5 === 0) ? '1.5' : '0.5',
-      class: 'tick',
-    }));
-  }
-
-  // Build coil segments (Ring 3)
-  const ring3El = document.getElementById('ring3');
-  for (let i = 0; i < 10; i++) {
-    const startAngle = i * 36;
-    const endAngle   = startAngle + 28;
-    const r = 160;
-    const p1 = polar(CX, CY, r, startAngle);
-    const p2 = polar(CX, CY, r, endAngle);
-    const largeArc = (endAngle - startAngle > 180) ? 1 : 0;
-    const d = `M ${p1.x} ${p1.y} A ${r} ${r} 0 ${largeArc} 1 ${p2.x} ${p2.y}`;
-    ring3El.appendChild(svgEl('path', { d, fill: 'none', stroke: 'rgba(0,229,255,0.5)',  'stroke-width': '5',  'stroke-linecap': 'round', class: 'coil-seg' }));
-    ring3El.appendChild(svgEl('path', { d, fill: 'none', stroke: 'rgba(79,195,247,0.15)', 'stroke-width': '12', 'stroke-linecap': 'round', class: 'coil-glow' }));
-  }
-
-  // Build triangle
-  const triPoints = [0, 120, 240].map(a => polar(CX, CY, 100, a));
-  document.getElementById('triangle-frame').setAttribute('points', triPoints.map(p => `${p.x},${p.y}`).join(' '));
-  const triNodes = document.getElementById('triangle-nodes');
-  triPoints.forEach(p => {
-    triNodes.appendChild(svgEl('circle', { cx: p.x, cy: p.y, r: '8',  fill: 'rgba(0,229,255,0.15)', stroke: 'rgba(0,229,255,0.7)', 'stroke-width': '1', class: 'tri-node' }));
-    triNodes.appendChild(svgEl('circle', { cx: p.x, cy: p.y, r: '3',  fill: 'rgba(224,247,250,0.8)', class: 'tri-node-core' }));
-  });
-
-  // Build hex
-  const hexPoints = Array.from({ length: 6 }, (_, i) => polar(CX, CY, 70, i * 60));
-  document.getElementById('hex-shape').setAttribute('points', hexPoints.map(p => `${p.x},${p.y}`).join(' '));
-
-  // Build energy beams
-  const beamsG = document.getElementById('energy-beams');
-  triPoints.forEach(p => {
-    beamsG.appendChild(svgEl('line', { x1: CX, y1: CY, x2: p.x, y2: p.y, stroke: 'rgba(0,229,255,0.3)', 'stroke-width': '1.5', class: 'beam' }));
-  });
-
-  // Build data arc dots
-  const dataArcs = document.getElementById('data-arcs');
-  [145, 175, 205].forEach((r, ri) => {
-    for (let i = 0; i < 3; i++) {
-      const p = polar(CX, CY, r, (ri * 40) + (i * 120));
-      dataArcs.appendChild(svgEl('circle', { cx: p.x, cy: p.y, r: '2', fill: 'rgba(0,229,255,0.8)', class: `data-dot data-dot-r${ri}` }));
-    }
-  });
-
-  // Build floating particles
-  const particlesContainer = document.getElementById('r-particles');
-  for (let i = 0; i < 30; i++) {
-    const p = document.createElement('div');
-    p.className = 'r-particle';
-    p.style.left = `${Math.random() * 100}%`;
-    p.style.top  = `${Math.random() * 100}%`;
-    particlesContainer.appendChild(p);
-  }
-
-  let reactorStarted = false;
-
-  function startReactor() {
-    if (reactorStarted) return;
-    reactorStarted = true;
-
-    // Boot timeline
-    const boot = createTimeline({ defaults: { ease: 'outExpo' } });
-    boot.add('#core-group',   { opacity: [0, 1], scale: [0.3, 1], duration: 1200 }, 0);
-    boot.add('#core-center',  { r: [0, 22], duration: 800, ease: 'outBack' }, 200);
-    boot.add('#energy-beams', { opacity: [0, 1], duration: 600 }, 600);
-    boot.add('#ring1',        { opacity: [0, 1], scale: [0.5, 1], duration: 800 }, 800);
-    boot.add('#hex-ring',     { opacity: [0, 1], rotate: [30, 0], duration: 600 }, 900);
-    boot.add('#ring2',        { opacity: [0, 1], duration: 700 }, 1000);
-    boot.add('#ring3',        { opacity: [0, 1], duration: 700 }, 1100);
-    boot.add('.coil-seg',     { strokeDashoffset: [80, 0], duration: 800, delay: stagger(60), ease: 'inOutQuart' }, 1100);
-    boot.add('#ring4',        { opacity: [0, 1], duration: 700 }, 1300);
-    boot.add('#ring5',        { opacity: [0, 1], strokeDashoffset: [600, 0], duration: 1500, ease: 'inOutQuart' }, 1400);
-    boot.add('#outer-ticks',  { opacity: [0, 1], duration: 600 }, 1600);
-    boot.add('.tick',         { opacity: [0, 1], duration: 300, delay: stagger(15, { from: 'center' }) }, 1600);
-    boot.add('#data-arcs',    { opacity: [0, 1], duration: 500 }, 1800);
-    boot.add('.reactor-tagline', { opacity: [0, 1], translateY: [8, 0], duration: 600 }, 2000);
-    boot.add('.r-hud-label',  { opacity: [0, 0.8], translateY: [10, 0], duration: 800 }, 2000);
-    boot.add('.r-hud-stats',  { opacity: [0, 0.7], translateY: [10, 0], duration: 800 }, 2200);
-
-    // Continuous animations
-    animate('#core-halo',   { opacity: [0.4, 0.8], r: [50, 58], duration: 2000, ease: 'inOutSine', loop: true, alternate: true, delay: 2500 });
-    animate('#core-center', { opacity: [0.8, 1],   r: [20, 24], duration: 1500, ease: 'inOutSine', loop: true, alternate: true, delay: 2500 });
-    animate('#ring4',       { rotate: 360,  duration: 30000, ease: 'linear', loop: true, delay: 2000 });
-    animate('#ring5',       { rotate: -360, duration: 45000, ease: 'linear', loop: true, delay: 2000 });
-    animate('#outer-ticks', { rotate: 360,  duration: 60000, ease: 'linear', loop: true, delay: 2000 });
-    animate('#ring3',       { rotate: -360, duration: 20000, ease: 'linear', loop: true, delay: 2000 });
-    animate('#hex-ring',    { rotate: 360,  duration: 15000, ease: 'linear', loop: true, delay: 2000 });
-    animate('#ring2 circle:first-child', { rotate: -360, duration: 25000, ease: 'linear', loop: true, delay: 2000 });
-    animate('#ring1',       { rotate: [0, 360], duration: 40000, ease: 'linear', loop: true, delay: 2000 });
-    animate('.beam',        { opacity: [0.2, 0.6], strokeWidth: [1, 2.5], duration: 1500, ease: 'inOutSine', loop: true, alternate: true, delay: stagger(200) });
-    animate('.tri-node',    { r: [7, 10], opacity: [0.8, 1], duration: 2000, ease: 'inOutSine', loop: true, alternate: true, delay: stagger(300) });
-    animate('.tri-node-core', { r: [2, 4], opacity: [0.6, 1], duration: 1500, ease: 'inOutSine', loop: true, alternate: true, delay: stagger(300) });
-    animate('.data-dot',    { opacity: [0.3, 1], r: [1.5, 3], duration: 1200, ease: 'inOutSine', loop: true, alternate: true, delay: stagger(100, { from: 'center' }) });
-    animate('.coil-glow',   { opacity: [0.3, 0.9], strokeWidth: [10, 16], duration: 3000, ease: 'inOutSine', loop: true, alternate: true, delay: stagger(200) });
-    animate('.r-particle',  { opacity: [0, 0.6, 0], translateY: [-60, -120], translateX: () => `${(Math.random() - 0.5) * 40}px`, scale: [0, 1.5, 0], duration: () => 3000 + Math.random() * 3000, delay: () => 2500 + Math.random() * 4000, loop: true, ease: 'inOutSine' });
-    animate('.ambient-glow', { scale: [0.9, 1.1], opacity: [0.6, 1], duration: 4000, ease: 'inOutSine', loop: true, alternate: true });
-  }
-
-  // Trigger boot when works section scrolls into view
-  const io = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting) { startReactor(); io.disconnect(); }
-  }, { threshold: 0.2 });
-  io.observe(reactorStage);
-
-  // Click core → reveal projects
-  document.getElementById('core-group').addEventListener('click', () => {
-    animate(reactorStage, {
-      opacity: [1, 0], scale: [1, 0.85],
-      duration: 700, ease: 'inExpo',
-      onComplete: () => {
-        reactorStage.style.display = 'none';
-        projectsView.style.display = 'block';
-        animate('.filter-tabs',  { opacity: [0, 1], translateY: [-18, 0], duration: 380, ease: 'outQuad' });
-        animate('.project-card', { opacity: [0, 1], translateY: [40,  0], delay: stagger(70), duration: 480, ease: 'outBack' });
-      },
-    });
-  });
-
-  // Reassemble → back to reactor
-  reassembleBtn.addEventListener('click', () => {
-    const tl = createTimeline({
-      onComplete: () => {
-        projectsView.style.display = 'none';
-        reactorStage.style.display = 'flex';
-        animate(reactorStage, { opacity: [0, 1], scale: [0.9, 1], duration: 600, ease: 'outBack' });
-      },
-    });
-    tl.add('.project-card', { opacity: [1, 0], translateY: [0, -20], delay: stagger(40), duration: 260, ease: 'inQuad' }, 0);
-    tl.add('.filter-tabs',  { opacity: [1, 0], translateY: [0, -20], duration: 260, ease: 'inQuad' }, 0);
-  });
+  (function loop() {
+    cx += (mx - cx) * 0.12;
+    cy += (my - cy) * 0.12;
+    cursor.style.left = cx + 'px';
+    cursor.style.top  = cy + 'px';
+    requestAnimationFrame(loop);
+  })();
 })();
 
 
 // ===== SMOOTH SCROLL =====
 document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', function (e) {
+  a.addEventListener('click', function(e) {
     const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      e.preventDefault();
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   });
 });
+
+
+// ===== NAVBAR ACTIVE STATE =====
+(function initNavbar() {
+  const links    = document.querySelectorAll('.nav-link');
+  const sections = document.querySelectorAll('section[id]');
+
+  function update() {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 130) current = s.id; });
+    links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + current));
+  }
+
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+
+
+// ===== CAREER TIMELINE ANIMATION =====
+(function initTimeline() {
+  const info = document.getElementById('career-info');
+  if (!info) return;
+
+  new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      const tl = document.getElementById('career-timeline');
+      if (tl) tl.classList.add('animate');
+    }
+  }, { threshold: 0.25 }).observe(info);
+})();
+
+
+// ===== CAROUSEL =====
+(function initCarousel() {
+  const projects = [
+    {
+      title: 'Industrial Policy Chatbot',
+      category: 'Machine Learning / NLP',
+      tools: 'Python, LangChain, Hybrid RAG, Cross-Encoder Reranking, Vector DB, FastAPI',
+      link: 'https://github.com/shivtaneja16/IndustrialPolicyChatbot.git',
+      svg: `<svg viewBox="0 0 480 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="480" height="280" rx="12" fill="#0a0e17"/>
+        <circle cx="80"  cy="140" r="22" fill="#0d2a3a" stroke="#5eead4" stroke-width="1.8"/>
+        <circle cx="160" cy="80"  r="22" fill="#0d2a3a" stroke="#5eead4" stroke-width="1.8"/>
+        <circle cx="160" cy="200" r="22" fill="#0d2a3a" stroke="#5eead4" stroke-width="1.8"/>
+        <circle cx="280" cy="105" r="24" fill="#0d2a3a" stroke="#14b8a6" stroke-width="2.2"/>
+        <circle cx="280" cy="175" r="24" fill="#0d2a3a" stroke="#14b8a6" stroke-width="2.2"/>
+        <circle cx="400" cy="140" r="30" fill="#0d9488"/>
+        <line x1="102" y1="133" x2="138" y2="88"  stroke="#5eead4" stroke-width="1.4" opacity="0.7"/>
+        <line x1="102" y1="147" x2="138" y2="192" stroke="#5eead4" stroke-width="1.4" opacity="0.7"/>
+        <line x1="182" y1="81"  x2="256" y2="108" stroke="#5eead4" stroke-width="1.4" opacity="0.7"/>
+        <line x1="182" y1="199" x2="256" y2="172" stroke="#5eead4" stroke-width="1.4" opacity="0.7"/>
+        <line x1="304" y1="108" x2="370" y2="130" stroke="#14b8a6" stroke-width="2" opacity="0.8"/>
+        <line x1="304" y1="172" x2="370" y2="150" stroke="#14b8a6" stroke-width="2" opacity="0.8"/>
+        <text x="400" y="146" text-anchor="middle" font-size="13" fill="white" font-weight="700" font-family="sans-serif">RAG</text>
+      </svg>`
+    },
+    {
+      title: 'AI Chatbot Agent',
+      category: 'Machine Learning / Conversational AI',
+      tools: 'Python, LangGraph, OpenAI API, Multi-turn dialogue, Context management',
+      link: '#',
+      svg: `<svg viewBox="0 0 480 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="480" height="280" rx="12" fill="#0a0e17"/>
+        <rect x="155" y="48" width="170" height="120" rx="20" fill="#0d2a3a" stroke="#5eead4" stroke-width="1.8"/>
+        <rect x="176" y="74"  width="36" height="24" rx="8" fill="#14b8a6" opacity="0.8"/>
+        <rect x="268" y="74"  width="36" height="24" rx="8" fill="#14b8a6" opacity="0.8"/>
+        <rect x="188" y="112" width="104" height="12" rx="6" fill="#5eead4" opacity="0.55"/>
+        <line x1="240" y1="48" x2="240" y2="28" stroke="#5eead4" stroke-width="3.5" stroke-linecap="round"/>
+        <circle cx="240" cy="17" r="8" fill="#5eead4"/>
+        <rect x="136" y="180" width="208" height="72" rx="12" fill="#0d2a3a" stroke="#14b8a6" stroke-width="1.4"/>
+        <rect x="152" y="196" width="80"  height="8" rx="4" fill="#5eead4" opacity="0.5"/>
+        <rect x="152" y="212" width="136" height="8" rx="4" fill="white" opacity="0.18"/>
+        <rect x="152" y="228" width="100" height="8" rx="4" fill="white" opacity="0.12"/>
+        <path d="M210 180 L188 166 L232 166 Z" fill="#0d2a3a" stroke="#14b8a6" stroke-width="1.4"/>
+      </svg>`
+    },
+    {
+      title: 'Data Visualization Dashboard',
+      category: 'Data Science / Analytics',
+      tools: 'Python, Pandas, Plotly, Dash, Statistical analysis, Real-time charts',
+      link: '#',
+      svg: `<svg viewBox="0 0 480 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="480" height="280" rx="12" fill="#0a0e17"/>
+        <rect x="55"  y="190" width="38" height="62" rx="4" fill="#5eead4" opacity="0.45"/>
+        <rect x="106" y="160" width="38" height="92" rx="4" fill="#5eead4" opacity="0.65"/>
+        <rect x="157" y="128" width="38" height="124" rx="4" fill="#5eead4"/>
+        <rect x="208" y="96"  width="38" height="156" rx="4" fill="#14b8a6"/>
+        <rect x="259" y="140" width="38" height="112" rx="4" fill="#5eead4" opacity="0.65"/>
+        <rect x="310" y="108" width="38" height="144" rx="4" fill="#14b8a6" opacity="0.85"/>
+        <rect x="361" y="72"  width="38" height="180" rx="4" fill="#14b8a6"/>
+        <line x1="46" y1="254" x2="412" y2="254" stroke="#5eead4" stroke-width="1.4" opacity="0.35"/>
+        <polyline points="74,194 125,164 176,132 227,100 278,144 329,112 380,76"
+          stroke="#eab308" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="74"  cy="194" r="5" fill="#eab308"/>
+        <circle cx="125" cy="164" r="5" fill="#eab308"/>
+        <circle cx="176" cy="132" r="5" fill="#eab308"/>
+        <circle cx="227" cy="100" r="5" fill="#eab308"/>
+        <circle cx="278" cy="144" r="5" fill="#eab308"/>
+        <circle cx="329" cy="112" r="5" fill="#eab308"/>
+        <circle cx="380" cy="76"  r="5" fill="#eab308"/>
+      </svg>`
+    },
+    {
+      title: 'Resale Price Predictor',
+      category: 'Machine Learning / Web App',
+      tools: 'Python, Flask, Scikit-learn, Linear Regression, HTML/CSS, Pandas',
+      link: '#',
+      svg: `<svg viewBox="0 0 480 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="480" height="280" rx="12" fill="#0a0e17"/>
+        <rect x="48" y="34" width="384" height="214" rx="12" fill="#0d1f2d" stroke="#1e3a5f" stroke-width="1.5"/>
+        <rect x="48" y="34" width="384" height="46" rx="12" fill="#1e3a5f"/>
+        <rect x="48" y="64" width="384" height="16" fill="#1e3a5f"/>
+        <circle cx="74"  cy="58" r="8" fill="#f87171" opacity="0.75"/>
+        <circle cx="98"  cy="58" r="8" fill="#fbbf24" opacity="0.75"/>
+        <circle cx="122" cy="58" r="8" fill="#4ade80" opacity="0.75"/>
+        <rect x="166" y="44" width="200" height="22" rx="11" fill="#050810" opacity="0.85"/>
+        <rect x="68"  y="104" width="145" height="12" rx="6" fill="#5eead4" opacity="0.65"/>
+        <rect x="68"  y="126" width="230" height="8"  rx="4" fill="#eae5ec" opacity="0.18"/>
+        <rect x="68"  y="142" width="190" height="8"  rx="4" fill="#eae5ec" opacity="0.18"/>
+        <rect x="68"  y="158" width="140" height="8"  rx="4" fill="#eae5ec" opacity="0.18"/>
+        <rect x="68"  y="184" width="110" height="28" rx="14" fill="#14b8a6"/>
+        <rect x="244" y="96"  width="164" height="112" rx="8" fill="#050810" stroke="#1e3a5f" stroke-width="1.4"/>
+        <text x="326" y="144" text-anchor="middle" font-size="13" fill="#5eead4" font-weight="600" font-family="sans-serif">PREDICT</text>
+        <text x="326" y="170" text-anchor="middle" font-size="24" fill="#eae5ec" font-weight="700" font-family="sans-serif">₹ 8.2L</text>
+      </svg>`
+    },
+    {
+      title: 'Plant Disease Detection',
+      category: 'Machine Learning / Computer Vision',
+      tools: 'Python, TensorFlow, CNN, Image Classification, 96.4% Accuracy',
+      link: '#',
+      svg: `<svg viewBox="0 0 480 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="480" height="280" rx="12" fill="#0a0e17"/>
+        <path d="M178 248 Q106 184 138 98 Q184 34 270 60 Q342 88 328 178 Q302 248 178 248Z"
+          fill="#0d2a1a" stroke="#22c55e" stroke-width="2"/>
+        <path d="M178 248 Q224 170 270 60" stroke="#22c55e" stroke-width="1.8" fill="none"/>
+        <path d="M200 224 Q240 178 258 126" stroke="#4ade80" stroke-width="1.2" fill="none" opacity="0.6"/>
+        <circle cx="224" cy="118" r="24" fill="#7f1d1d" opacity="0.68" stroke="#ef4444" stroke-width="2"/>
+        <circle cx="256" cy="155" r="16" fill="#7f1d1d" opacity="0.58" stroke="#ef4444" stroke-width="1.5"/>
+        <rect x="194" y="90"  width="88" height="88" rx="6" fill="none" stroke="#ef4444" stroke-width="2.2" stroke-dasharray="6 4"/>
+        <rect x="308" y="68"  width="118" height="32" rx="16" fill="#0d2a1a" stroke="#22c55e" stroke-width="1.4"/>
+        <text x="367" y="89"  text-anchor="middle" font-size="13" fill="#4ade80" font-weight="700" font-family="sans-serif">CNN Model</text>
+        <rect x="308" y="114" width="118" height="32" rx="16" fill="#0d2a1a" stroke="#22c55e" stroke-width="1.4"/>
+        <text x="367" y="135" text-anchor="middle" font-size="13" fill="#4ade80" font-weight="700" font-family="sans-serif">96.4% acc</text>
+      </svg>`
+    }
+  ];
+
+  const track  = document.getElementById('carousel-track');
+  const dots   = document.getElementById('carousel-dots');
+  const prev   = document.getElementById('carousel-prev');
+  const next   = document.getElementById('carousel-next');
+  if (!track) return;
+
+  let current = 0;
+
+  projects.forEach((p, i) => {
+    // Slide
+    const slide = document.createElement('div');
+    slide.className = 'carousel-slide';
+    slide.innerHTML = `
+      <div class="carousel-content">
+        <div class="carousel-info">
+          <div class="carousel-number"><h3>0${i + 1}</h3></div>
+          <div class="carousel-details">
+            <h4>${p.title}</h4>
+            <p class="carousel-category">${p.category}</p>
+            <div class="carousel-tools">
+              <span class="tools-label">Tools &amp; Features</span>
+              <p>${p.tools}</p>
+            </div>
+            ${p.link !== '#' ? `<a href="${p.link}" target="_blank" rel="noopener" class="carousel-link">View Project &rarr;</a>` : ''}
+          </div>
+        </div>
+        <div class="carousel-visual">${p.svg}</div>
+      </div>`;
+    track.appendChild(slide);
+
+    // Dot
+    const dot = document.createElement('button');
+    dot.className = 'carousel-dot-btn' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', `Slide ${i + 1}`);
+    dot.addEventListener('click', () => goTo(i));
+    dots.appendChild(dot);
+  });
+
+  function goTo(n) {
+    current = ((n % projects.length) + projects.length) % projects.length;
+    track.style.transform = `translateX(-${current * 100}%)`;
+    dots.querySelectorAll('.carousel-dot-btn').forEach((d, i) =>
+      d.classList.toggle('active', i === current));
+  }
+
+  prev && prev.addEventListener('click', () => goTo(current - 1));
+  next && next.addEventListener('click', () => goTo(current + 1));
+
+  // Touch swipe
+  let tx = 0;
+  track.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend',   e => {
+    const diff = tx - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) goTo(diff > 0 ? current + 1 : current - 1);
+  });
+})();
