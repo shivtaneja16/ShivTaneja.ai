@@ -25,12 +25,22 @@
   <nav class="header" id="navbar">
     <a href="#home" class="navbar-title">ST</a>
     <a href="mailto:shivtaneja16@gmail.com" class="navbar-connect">shivtaneja16@gmail.com</a>
-    <ul>
+    <ul class="nav-links">
       <li><a href="#about"   class="nav-link">ABOUT</a></li>
       <li><a href="#works"   class="nav-link">WORK</a></li>
       <li><a href="#contact" class="nav-link">CONTACT</a></li>
     </ul>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
+
+  <!-- Mobile nav drawer -->
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="#about"   class="mobile-nav-link">ABOUT</a>
+    <a href="#works"   class="mobile-nav-link">WORK</a>
+    <a href="#contact" class="mobile-nav-link">CONTACT</a>
+  </div>
 
   <!-- ===== LANDING ===== -->
   <section class="landing-section" id="home">
@@ -161,6 +171,24 @@
       </div>
     </div>
   </section>
+
+  <!-- ===== RESUME ===== -->
+  <div class="resume-strip section-container">
+    <div class="resume-strip-inner">
+      <div class="resume-strip-text">
+        <span class="resume-label">Resume</span>
+        <p>Download my latest CV to see my full experience &amp; skills.</p>
+      </div>
+      <a href="resume.pdf" download="Shiv_Taneja_Resume.pdf" class="resume-btn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="7 10 12 15 17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="12" y1="15" x2="12" y2="3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        Download CV
+      </a>
+    </div>
+  </div>
 
   <!-- ===== CONTACT ===== -->
   <section class="contact-section" id="contact">

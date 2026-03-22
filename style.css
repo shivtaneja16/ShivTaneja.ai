@@ -981,3 +981,222 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 600px) {
   .contact-credit { font-size: 16px; }
 }
+
+/* =============================================
+   RESUME STRIP
+   ============================================= */
+.resume-strip {
+  margin: 0 auto 60px;
+}
+.resume-strip-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 28px 36px;
+  border-radius: 4px;
+  background: rgba(94,234,212,0.03);
+  transition: background 0.3s ease;
+}
+.resume-strip-inner:hover { background: rgba(94,234,212,0.06); }
+.resume-strip-text { display: flex; flex-direction: column; gap: 6px; }
+.resume-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  font-weight: 500;
+  color: var(--accent);
+}
+.resume-strip-text p {
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--text-muted);
+  margin: 0;
+}
+.resume-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 28px;
+  border: 1px solid var(--accent);
+  border-radius: 2px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: var(--accent);
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+.resume-btn:hover { background: var(--accent); color: var(--bg); }
+
+/* =============================================
+   HAMBURGER + MOBILE NAV
+   ============================================= */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  z-index: 1;
+}
+.hamburger span {
+  display: block;
+  width: 22px; height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-nav {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(5,8,16,0.97);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  z-index: 9998;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.5rem;
+}
+.mobile-nav.open { display: flex; }
+
+.mobile-nav-link {
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 5px;
+  color: var(--text-sec);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s ease;
+}
+.mobile-nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+.mobile-nav-link:hover      { color: var(--accent); }
+.mobile-nav-link:hover::after { width: 100%; }
+
+/* Show hamburger, hide desktop ul below 560px */
+@media (max-width: 560px) {
+  .nav-links  { display: none !important; }
+  .hamburger  { display: flex; }
+  .header     { padding: 16px 0; }
+  .navbar-title { font-size: 15px; }
+}
+
+/* =============================================
+   MOBILE — Global tweaks
+   ============================================= */
+
+/* Tighter container on small phones */
+@media (max-width: 480px) {
+  :root { --cWidth: calc(100% - 32px); }
+}
+
+/* Landing: prevent text overflow on tiny screens */
+@media (max-width: 400px) {
+  .landing-intro h2  { font-size: 14px; }
+  .landing-intro h1  { font-size: 26px; }
+  .landing-info h3   { font-size: 14px; }
+  .landing-info-h2   { font-size: 32px; letter-spacing: 1px; }
+  .landing-section   { min-height: 520px; }
+}
+@media (max-width: 360px) {
+  .landing-info-h2 { font-size: 26px; }
+  .landing-intro h1 { font-size: 22px; }
+}
+@media (max-height: 600px) {
+  .landing-info { bottom: 48px; }
+  .landing-intro { top: 12%; }
+}
+
+/* About */
+@media (max-width: 480px) {
+  .about-section { padding: 60px 0; min-height: auto; }
+  .about-para    { font-size: 20px; }
+  .about-title   { letter-spacing: 4px; }
+}
+
+/* What I Do */
+@media (max-width: 480px) {
+  .whatIDO         { padding: 40px 0; }
+  .what-title      { font-size: 36px; margin-bottom: 28px; }
+  .what-content    { padding: 18px 16px; }
+  .what-content h3 { font-size: 20px; }
+  .what-border-outer { display: none; }
+}
+
+/* Career */
+@media (max-width: 480px) {
+  .career-section       { padding: 50px 0 60px; }
+  .career-title         { font-size: 28px; margin-bottom: 44px; }
+  .career-info          { width: 100%; }
+  .career-info h3       { font-size: 28px; }
+  .career-role h4       { font-size: 16px; }
+  .career-role h5       { font-size: 13px; }
+  .career-info-box      { padding-left: 16px; margin-bottom: 36px; gap: 10px; }
+  .career-info-box p    { font-size: 13px; }
+  .career-timeline-wrap { left: 4px; }
+}
+
+/* Carousel */
+@media (max-width: 480px) {
+  .work-section        { padding: 40px 0 50px; }
+  .work-title          { font-size: 26px; margin-bottom: 24px; }
+  .carousel-slide      { padding: 22px 0; }
+  .carousel-content    { gap: 18px; }
+  .carousel-number     { display: none; }
+  .carousel-details h4 { font-size: 18px; }
+  .carousel-category   { font-size: 12px; }
+  .carousel-tools p    { font-size: 12px; }
+  .carousel-dots       { margin-top: 18px; gap: 8px; }
+}
+
+/* Resume strip */
+@media (max-width: 600px) {
+  .resume-strip-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 18px;
+    gap: 16px;
+  }
+  .resume-btn { width: 100%; justify-content: center; }
+}
+@media (max-width: 480px) {
+  .resume-strip        { margin-bottom: 40px; }
+  .resume-strip-text p { font-size: 13px; }
+}
+
+/* Contact */
+@media (max-width: 480px) {
+  .contact-section { padding-bottom: 56px; margin-top: 0; }
+  .contact-title   { font-size: 28px; margin-bottom: 28px; }
+  .contact-social  { font-size: 16px; }
+  .contact-box h4  { font-size: 11px; }
+  .contact-box p   { font-size: 13px; }
+}
+
+/* Touch devices: always show What I Do content */
+@media (hover: none) {
+  .what-content p        { opacity: 1 !important; max-height: 300px !important; }
+  .what-content h5       { opacity: 0.45 !important; }
+  .what-content-flex     { opacity: 1 !important; }
+  .what-content          { min-height: auto !important; }
+  .cursor-main           { display: none !important; }
+}
