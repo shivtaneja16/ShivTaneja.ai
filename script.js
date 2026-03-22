@@ -242,12 +242,16 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     dots.appendChild(dot);
   });
 
+  function slideWidth() { return track.parentElement.offsetWidth; }
+
   function goTo(n) {
     current = ((n % projects.length) + projects.length) % projects.length;
-    track.style.transform = `translateX(-${current * 100}%)`;
+    track.style.transform = `translateX(-${current * slideWidth()}px)`;
     dots.querySelectorAll('.carousel-dot-btn').forEach((d, i) =>
       d.classList.toggle('active', i === current));
   }
+
+  window.addEventListener('resize', () => goTo(current), { passive: true });
 
   prev && prev.addEventListener('click', () => goTo(current - 1));
   next && next.addEventListener('click', () => goTo(current + 1));

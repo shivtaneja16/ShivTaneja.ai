@@ -883,14 +883,83 @@ a { color: inherit; text-decoration: none; }
   .carousel-arrow-left  { left: 8px; }
   .carousel-arrow-right { right: 8px; }
 }
+
+/* Tablet: stack, visual on top */
 @media (max-width: 900px) {
-  .carousel-content { flex-direction: column; gap: 30px; }
-  .carousel-visual  { width: 100%; }
-  .carousel-slide   { padding: 30px 0; }
+  .work-section         { padding: 50px 0 70px; }
+  .work-title           { font-size: 36px; margin-bottom: 32px; }
+  .carousel-content     { flex-direction: column-reverse; gap: 20px; }
+  .carousel-visual      { width: 100%; }
+  .carousel-visual svg  { max-height: 220px; border-radius: 8px; }
+  .carousel-number      { display: none; }
+  .carousel-info        { width: 100%; gap: 0; }
+  .carousel-slide       { padding: 28px 0 64px; }
+  /* Reposition arrows to bottom corners of slide */
+  .carousel-arrow       { top: auto; bottom: 8px; transform: none; width: 40px; height: 40px; }
+  .carousel-arrow-left  { left: 0; }
+  .carousel-arrow-right { right: 0; }
+  /* Shift dots left of center to not clash with arrows */
+  .carousel-dots        { margin-top: 0; padding-bottom: 0; }
 }
+
+/* Phone */
 @media (max-width: 600px) {
-  .work-section { padding: 50px 0 60px; }
-  .carousel-arrow { display: none; }
+  .work-section         { padding: 40px 0 60px; }
+  .work-title           { font-size: 28px; margin-bottom: 24px; }
+  .carousel-visual svg  { max-height: 180px; }
+  .carousel-details h4  { font-size: 18px; }
+  .carousel-category    { font-size: 12px; }
+  .carousel-tools p     { font-size: 13px; }
+  .carousel-link        { font-size: 12px; margin-top: 12px; }
+  .carousel-slide       { padding: 20px 0 56px; }
+  /* Hide arrows on small phones — swipe only */
+  .carousel-arrow       { display: none; }
+  /* Swipe hint */
+  .carousel-swipe-hint  { display: block; }
+}
+
+/* Bigger tap targets for dots on touch */
+@media (max-width: 900px) {
+  .carousel-dots        { gap: 0; margin-top: 14px; }
+  .carousel-dot-btn     {
+    width: 36px; height: 36px;
+    border: none;
+    background: transparent;
+    position: relative;
+    padding: 0;
+  }
+  .carousel-dot-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.3);
+    background: transparent;
+    transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .carousel-dot-btn.active::after {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 8px rgba(94,234,212,0.4);
+  }
+  .carousel-dot-btn:hover::after {
+    border-color: var(--accent);
+    background: rgba(94,234,212,0.2);
+  }
+}
+
+/* Swipe hint text */
+.carousel-swipe-hint {
+  display: none;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  opacity: 0.5;
+  margin-top: 6px;
 }
 
 /* ===== CONTACT ===== */
