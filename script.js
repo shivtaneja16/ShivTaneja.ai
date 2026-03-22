@@ -19,11 +19,40 @@
 })();
 
 
+// ===== HAMBURGER MENU =====
+(function initHamburger() {
+  const btn   = document.getElementById('hamburger');
+  const menu  = document.getElementById('mobile-nav');
+  if (!btn || !menu) return;
+
+  function close() {
+    btn.classList.remove('open');
+    menu.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  btn.addEventListener('click', () => {
+    const open = menu.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    document.body.style.overflow = open ? 'hidden' : '';
+  });
+
+  menu.querySelectorAll('.mobile-nav-link').forEach(l => l.addEventListener('click', close));
+  menu.addEventListener('click', e => { if (e.target === menu) close(); });
+})();
+
+
 // ===== SMOOTH SCROLL =====
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', function(e) {
     const target = document.querySelector(this.getAttribute('href'));
-    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    if (!target) return;
+    e.preventDefault();
+    // close mobile menu if open
+    document.getElementById('mobile-nav')?.classList.remove('open');
+    document.getElementById('hamburger')?.classList.remove('open');
+    document.body.style.overflow = '';
+    setTimeout(() => target.scrollIntoView({ behavior: 'smooth', block: 'start' }), 30);
   });
 });
 
