@@ -323,6 +323,13 @@ a { color: inherit; text-decoration: none; }
   .landing-info h3  { font-size: 26px; }
   .landing-info-h2  { font-size: 72px; }
 }
+/* Mid-range: tighten font sizes before the centred layout kicks in */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .landing-intro h1 { font-size: 46px; }
+  .landing-info-h2  { font-size: 62px; }
+  .landing-info h3  { font-size: 22px; }
+}
+
 @media (min-width: 1025px) {
   .landing-intro {
     top: 50%; left: auto;
@@ -382,7 +389,7 @@ a { color: inherit; text-decoration: none; }
   color: var(--text);
 }
 
-@media (min-width: 600px)  { .about-section { justify-content: center; } }
+@media (min-width: 481px)  { .about-section { justify-content: center; } }
 @media (min-width: 1025px) {
   .about-section { justify-content: flex-end; min-height: 100vh; padding: 0; }
   .about-me { width: 50%; }
@@ -888,13 +895,13 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 900px) {
   .work-section         { padding: 50px 0 70px; }
   .work-title           { font-size: 36px; margin-bottom: 32px; }
+  .carousel-wrapper     { padding: 0 48px; }
   .carousel-content     { flex-direction: column-reverse; gap: 20px; }
   .carousel-visual      { width: 100%; }
   .carousel-visual svg  { max-height: 220px; border-radius: 8px; }
   .carousel-number      { display: none; }
   .carousel-info        { width: 100%; gap: 0; }
   .carousel-slide       { padding: 28px 0 20px; }
-  /* Keep arrows centered on sides, just move inward */
   .carousel-arrow-left  { left: 4px; }
   .carousel-arrow-right { right: 4px; }
   .carousel-arrow       { width: 40px; height: 40px; }
@@ -904,6 +911,7 @@ a { color: inherit; text-decoration: none; }
 @media (max-width: 600px) {
   .work-section         { padding: 40px 0 60px; }
   .work-title           { font-size: 28px; margin-bottom: 24px; }
+  .carousel-wrapper     { padding: 0; }
   .carousel-visual svg  { max-height: 180px; }
   .carousel-details h4  { font-size: 18px; }
   .carousel-category    { font-size: 12px; }
@@ -1159,8 +1167,8 @@ a { color: inherit; text-decoration: none; }
 .mobile-nav-link:hover      { color: var(--accent); }
 .mobile-nav-link:hover::after { width: 100%; }
 
-/* Show hamburger, hide desktop ul below 560px */
-@media (max-width: 560px) {
+/* Show hamburger, hide desktop ul below 768px */
+@media (max-width: 768px) {
   .nav-links  { display: none !important; }
   .hamburger  { display: flex; }
   .header     { padding: 16px 0; }
