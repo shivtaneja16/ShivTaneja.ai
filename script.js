@@ -212,6 +212,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 
   let current = 0;
   let isAnimating = false;
+  let animTimer = null;
 
   projects.forEach((p, i) => {
     // Slide
@@ -243,20 +244,26 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     dots.appendChild(dot);
   });
 
-  function slideWidth() { return track.parentElement.offsetWidth; }
+  function slideWidth() { return track.parentElement.getBoundingClientRect().width; }
+
+  function releaseAnim() {
+    isAnimating = false;
+    clearTimeout(animTimer);
+  }
 
   function goTo(n) {
     if (isAnimating) return;
     const target = ((n % projects.length) + projects.length) % projects.length;
     if (target === current) return;
     isAnimating = true;
+    animTimer = setTimeout(releaseAnim, 600); // fallback if transitionend doesn't fire
     current = target;
     track.style.transform = `translateX(-${current * slideWidth()}px)`;
     dots.querySelectorAll('.carousel-dot-btn').forEach((d, i) =>
       d.classList.toggle('active', i === current));
   }
 
-  track.addEventListener('transitionend', () => { isAnimating = false; });
+  track.addEventListener('transitionend', releaseAnim);
 
   // Resize: reposition without animation guard
   window.addEventListener('resize', () => {
