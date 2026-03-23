@@ -211,6 +211,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   if (!track) return;
 
   let current = 0;
+  let isAnimating = false;
 
   projects.forEach((p, i) => {
     // Slide
@@ -245,13 +246,22 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   function slideWidth() { return track.parentElement.offsetWidth; }
 
   function goTo(n) {
-    current = ((n % projects.length) + projects.length) % projects.length;
+    if (isAnimating) return;
+    const target = ((n % projects.length) + projects.length) % projects.length;
+    if (target === current) return;
+    isAnimating = true;
+    current = target;
     track.style.transform = `translateX(-${current * slideWidth()}px)`;
     dots.querySelectorAll('.carousel-dot-btn').forEach((d, i) =>
       d.classList.toggle('active', i === current));
   }
 
-  window.addEventListener('resize', () => goTo(current), { passive: true });
+  track.addEventListener('transitionend', () => { isAnimating = false; });
+
+  // Resize: reposition without animation guard
+  window.addEventListener('resize', () => {
+    track.style.transform = `translateX(-${current * slideWidth()}px)`;
+  }, { passive: true });
 
   prev && prev.addEventListener('click', () => goTo(current - 1));
   next && next.addEventListener('click', () => goTo(current + 1));
